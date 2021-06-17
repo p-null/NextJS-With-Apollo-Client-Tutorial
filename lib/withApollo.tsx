@@ -1,12 +1,11 @@
 import {
   ApolloClient,
   ApolloProvider,
-  DefaultOptions,
   HttpLink,
   InMemoryCache,
 } from "@apollo/client";
-import { useRouter } from "next/router";
 import nextWithApollo from "next-with-apollo";
+import { useRouter } from "next/router";
 
 const withApollo = nextWithApollo(
   ({ initialState, headers }) => {
@@ -17,6 +16,7 @@ const withApollo = nextWithApollo(
       }),
       headers: {
         ...(headers as Record<string, string>),
+        "my-header": "blah",
       },
       cache: new InMemoryCache().restore(initialState || {}),
     });

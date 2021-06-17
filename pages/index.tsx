@@ -1,12 +1,15 @@
-import Image from "next/image";
+import { useQuery } from "@apollo/client";
 import { get } from "lodash";
+import Image from "next/image";
 import Link from "next/link";
-import { getDataFromTree } from "@apollo/client/react/ssr";
+import { CharactersQuery } from "../generated";
+import { CHARACTERS_QUERY } from "../graphql/queries";
 import withApollo from "../lib/withApollo";
-import { CharactersQuery, useCharactersQuery } from "../generated";
 
 function Home() {
-  const { data } = useCharactersQuery();
+  // const { data } = useCharactersQuery();
+
+  const { data } = useQuery(CHARACTERS_QUERY);
 
   const characters = get(
     data,
@@ -33,4 +36,4 @@ function Home() {
   );
 }
 
-export default withApollo(Home, { getDataFromTree });
+export default withApollo(Home); //getDataFromTree
