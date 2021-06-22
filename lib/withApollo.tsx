@@ -13,11 +13,11 @@ const withApollo = nextWithApollo(
       ssrMode: typeof window === "undefined",
       link: new HttpLink({
         uri: "https://rickandmortyapi.com/graphql",
-      }),
-      headers: {
+          headers: {
         ...(headers as Record<string, string>),
         "my-header": "blah",
-      },
+        },
+      }),
       cache: new InMemoryCache().restore(initialState || {}),
     });
   },
